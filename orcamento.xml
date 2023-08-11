@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  -->
+
+<odoo>
+
+
+    <record id="orca_tabela_form" model="ir.ui.view">
+       <field name="name">orcamento.tabela.form</field>
+       <field name="model">orca.tabela</field>
+       <field name="arch" type="xml">
+          <form create="false">
+           <div class="oe_title">
+                <h1>
+                    Tabela de Orçamento
+                </h1>
+           </div>
+            <div><h2><field name="produto"/></h2>
+            <field name="fiscal"/>
+            </div>
+           <group>
+
+                <group string="Custos">
+
+                    <group>
+                    <field name="currency_id" invisible="1" colspan="4"/>
+                    <field name="mp" colspan="4" widget="float"/>
+                    <field name="mo" colspan="4"/>
+                    <field name="mo_valor" colspan="4"/>
+                    <field name="mo_total" readonly="1" colspan="4"/>
+                    <field name="terc" colspan="4"/>
+                    <field name="total" readonly="1" colspan="4"/>
+                    <field name="lucro" colspan="4"/>
+                    </group>
+                </group>
+
+                 <group string="Venda" >
+                   <h4><strong><field name="valor_venda" readonly="1"/></strong></h4>
+                     <group>
+
+                    <field name="imposto_venda" readonly="1"/>
+                    <field name="impv_valor" readonly="1" colspan="2"/>
+                    <field name="cvenda" readonly="1"/>
+                    <field name="resulv" readonly="1"/>
+
+                     </group>
+               </group>
+               <group string="Industrialização">
+                   <h4><strong><field name="valor_ind" readonly="1"/></strong></h4>
+                   <group>
+                           <field name="imposto_ind" readonly="1"/>
+                           <field name="impi_valor" readonly="1"/>
+                           <field name="cind" readonly="1"/>
+                            <field name="resuli" readonly="1"/>
+                       </group>
+
+               </group>
+               <group string="Serviço">
+                   <h4><strong><field name="valor_serv" readonly="1"/></strong></h4>
+                   <group>
+                       <field name="imposto_serv" readonly="1"/>
+                       <field name="imps_valor" readonly="1"/>
+                       <field name="cserv" readonly="1"/>
+                       <field name="resuls" readonly="1"/>
+
+
+                        <field name="linha" invisible="1"/>
+
+                    </group>
+                </group>
+           </group>
+            <footer>
+                <button string="Salvar e Selecionar" class="btn-primary" type="object" name="salva_orca"/>
+                <button string="Selecionar" class="btn-primary" type="object" name="seleciona"/>
+                <button string="Cancelar" special="cancel" class="btn-default"/>
+            </footer>
+        </form>
+       </field>
+    </record>
+
+    <record model="ir.ui.view" id="orca_geral_search_view">
+    <field name="name">orca.geral.tree</field>
+    <field name="model">orca.geral</field>
+    <field name="arch" type="xml">
+        <search>
+            <field name="pedido"/>
+            <field name="name"/>
+            <field name="produto"/>
+
+             <group expand="0" string="Group By">
+                    <filter
+                        string="Pedido"
+                        name="pedido"
+                        domain="[]"
+                        context="{'group_by':'pedido'}"
+                    />
+                    <filter
+                        string="Produto"
+                        name="produto"
+                        domain="[]"
+                        context="{'group_by':'produto'}"
+                    />
+             </group>
+        </search>
+    </field>
+    </record>
+
+    <record model="ir.ui.view" id="orca_geral_tree_view">
+    <field name="name">orca.geral.tree</field>
+    <field name="model">orca.geral</field>
+    <field name="arch" type="xml">
+        <tree default_order="name desc" >
+            <field name="name" string="Orcamento" readonly="1" decoration-bf="1"/>
+            <field name="produto" string="Produto"/>
+            <field name="fiscal" string="Fiscal"/>
+            <field name="pedido" string="Pedido de Venda"/>
+            <field name="valor_venda" string="Valor Venda"/>
+            <field name="valor_ind" string="Valor Ind"/>
+            <field name="valor_serv" string="Valor Serviço"/>
+        </tree>
+    </field>
+    </record>
+
+    <record id="orca_geral_form" model="ir.ui.view">
+       <field name="name">orcamento.geral.form</field>
+       <field name="model">orca.geral</field>
+       <field name="arch" type="xml">
+           <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+
+                    </div>
+                      <field name="currency_id" invisible="1"/>
+                       <field name="linha" invisible="1"/>
+                <group string="Custos">
+
+                    <field name="produto"/>
+                    <field name="fiscal"/>
+                    <field name="mp" colspan="4" widget="monetary"/>
+                    <field name="mo" colspan="4"/>
+                    <field name="mo_valor" widget="monetary"/>
+                    <field name="mo_total" widget="monetary" readonly="1"/>
+                    <field name="terc" widget="monetary" />
+                    <field name="total" widget="monetary" readonly="1" />
+                    <field name="lucro" />
+
+                </group>
+
+                 <group string="Venda" >
+                    <h4><strong><field name="valor_venda" widget="monetary" readonly="1"/></strong></h4>
+
+
+                        <field name="imposto_venda" readonly="1"/>
+
+                        <field name="impv_valor" readonly="1" />
+
+
+                        <field name="cvenda" readonly="1"/>
+
+                        <field name="resulv" readonly="1"/>
+
+
+
+               </group>
+               <group string="Industrialização">
+
+                   <h4><strong><field name="valor_ind" widget="monetary" readonly="1"/></strong></h4>
+
+                           <field name="imposto_ind" readonly="1"/>
+                           <field name="impi_valor" widget="monetary" readonly="1"/>
+                           <field name="cind" widget="monetary" readonly="1"/>
+                           <field name="resuli" widget="monetary" readonly="1"/>
+
+               </group>
+               <group string="Serviço">
+
+                   <h4><strong><field name="valor_serv" readonly="1"/></strong></h4>
+                       <field name="imposto_serv" readonly="1"/>
+                       <field name="imps_valor" widget="monetary" readonly="1"/>
+                       <field name="cserv" widget="monetary" readonly="1"/>
+                       <field name="resuls" widget="monetary" readonly="1"/>
+
+
+
+                </group>
+
+                </sheet>
+           </form>
+       </field>
+        </record>
+
+    <record id="orca_sale" model="ir.ui.view">
+       <field name="name">orca.sale</field>
+       <field name="inherit_id" ref="sale.view_order_form" />
+       <field name="model">sale.order</field>
+       <field name="groups_id" eval="[(4,ref('orca_user')),(4,ref('orca_admin'))]"/>
+       <field name="arch" type="xml">
+           <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="before">
+               <button name="%(orca_tabela_act_window)d" type="action" class="oe_stat_button"  icon="fa-calculator" attrs="{'invisible': [('parent.state', 'in', ['sale', 'done'])]}"/>
+           </xpath>
+       </field>
+    </record>
+</odoo>
