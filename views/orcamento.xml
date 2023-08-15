@@ -200,6 +200,7 @@
        <field name="arch" type="xml">
            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="before">
                <button name="%(orca_tabela_act_window)d" type="action" class="oe_stat_button"  icon="fa-calculator" attrs="{'invisible': [('parent.state', 'in', ['sale', 'done'])]}"/>
+               <button name="%(orca_list_act_window)d" type="action" class="oe_stat_button"  icon="fa-bars" attrs="{'invisible': [('parent.state', 'in', ['sale', 'done'])]}"/>
            </xpath>
        </field>
     </record>
