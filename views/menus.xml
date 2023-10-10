@@ -5,23 +5,19 @@
 <odoo>
 
     <record model="ir.actions.act_window" id="orca_tabela_act_window">
-        <field name="name">Orcamento Tabela</field>
+        <field name="name">Orcamento</field>
         <field name="res_model">orca.tabela</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
-    </record>
 
-    <record model="ir.actions.act_window" id="orca_list_act_window">
-        <field name="name">Orcamento Lista</field>
-        <field name="res_model">orca.geral</field>
-        <field name="view_mode">tree</field>
-        <field name="domain">[('pedido', '=', pedido.id)]</field>
+
     </record>
 
     <record model="ir.actions.act_window" id="orca_geral_act_window">
         <field name="name">Orcamento</field>
         <field name="res_model">orca.geral</field>
         <field name="view_mode">tree,form</field>
+        
     </record>
 
 

@@ -7,7 +7,6 @@ class OrcaTabela(models.TransientModel):
 
     fiscal = fields.Many2one('account.fiscal.position', string='Posição Fiscal', related='linha.order_id.fiscal_position_id')
     linha = fields.Many2one('sale.order.line', string='Linha Pedido')
-    pedido = fields.Many2one('sale.order', string='Pedido de Venda', related='linha.order_id')
     currency_id = fields.Many2one('res.currency', default=lambda self: self.env.company.currency_id, readonly=True)
     mp = fields.Monetary(string='Matéria Prima')
     mo = fields.Integer(string='Horas MO')
