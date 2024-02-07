@@ -2,23 +2,19 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
 {
-    'name': 'Orçamento',
+    'name': 'Sale Lissaro',
     'description': """
-        Orçamento""",
+        Este módulo adequa a visualização Kanban do módulo de Vendas e adapta o módulo sale_project a trabalhar com produtos.""",
     'version': '14.0.1.0.0',
     'license': 'AGPL-3',
     'author': 'Madureira Ind. e Com.',
     'website': 'www.madureira.ind.br',
     'depends': [
-        'sale',
+        'sale','sale_purchase_stock','sales_order_delivery_status',
     ],
     'data': [
-        'security/orcamento.xml',
-        'security/ir.model.access.csv',
-        'data/ir_sequence_data.xml',
-        'views/res_config_settings_view.xml',
-        'views/menus.xml',
-        'views/orcamento.xml',
+        'views/sale_order.xml',
+        'views/sale_project.xml',
     ],
     'demo': [
     ],

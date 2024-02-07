@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--
+  -->
+<data>
+    <record id="sale_order_lissaroform" model="ir.ui.view">
+        <field name="name">sale.order.lissaroform</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="attributes">
+                   <attribute name="invisible">True</attribute>
+           </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_template_id']" position="after">
+                   <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="move"/>
+           </xpath>
+        </field>
+    </record>
+
+      <template id="sale_order_lissaroportal" inherit_id="sale.sale_order_portal_content">
+                      <xpath expr="//td[@id='product_name']" position="replace">
+                   <td id="product_name"><span t-field="line.product_id"/></td>
+
+           </xpath>
+      </template>
+
+          <template id="sale_order_lissaroprint" inherit_id="sale.report_saleorder_document">
+                      <xpath expr="//td[@name='td_name']" position="replace">
+                          <td name="td_name"><span t-field="line.product_id"/></td>
+                      </xpath>
+
+
+    </template>
+
+   
+    <record id="sale_order_lissarokanban" model="ir.ui.view">
+        <field name="name">sale.order.lissarokanban</field>
+        <field name="inherit_id" ref="sale.view_sale_order_kanban" />
+        <field name="model">sale.order</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <xpath expr="//kanban" position="replace">
+              <kanban class="o_kanban_mobile" sample="1" quick_create="false">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="amount_total"/>
+                    <field name="order_line"/>
+                    <field name="date_order"/>
+                    <field name="state"/>
+                    <field name="currency_id"/>
+                    <field name="activity_state"/>
+                    <progressbar field="activity_state" colors='{"planned": "success", "today": "warning", "overdue": "danger"}'/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                                <div class="o_kanban_record_top mb16">
+                                    <div class="o_kanban_record_headings mt4">
+                                        <strong class="o_kanban_record_title"><!--<t t-esc="record.name.value"/> --> <span><t t-esc="record.partner_id.value"/></span></strong>
+                                    </div>
+
+                                </div>
+                                <div>
+
+
+                                    <field name="order_line"  widget="many2many_tags" nolabel="1" mode="tree">
+                                      <tree>
+                                        <field name="name" readonly="1"/>
+                                        <field name="price_subtotal" readonly="1"/>
+                                      </tree>
+                                    </field>
+                                  </div>
+                                <div class="o_kanban_record_bottom">
+
+
+
+                                    <div class="oe_kanban_bottom_left text-muted">
+                                        <span><t t-esc="record.date_order.value"/></span>
+                                        <field name="activity_ids" widget="kanban_activity"/>
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <field name="state" widget="label_selection" options="{'classes': {'draft': 'default', 'cancel': 'default', 'done': 'success'}}"/>
+                                         <field name="delivery_status" optional="show" widget="badge" decoration-muted="delivery_status == 'nothing'"
+                       decoration-warning="delivery_status == 'to_deliver' or delivery_status == 'processing'"
+                       decoration-info="delivery_status == 'partial'"
+                       decoration-success="delivery_status == 'delivered'"/>
+                                    </div>
+
+                                </div>
+                                <strong><field name="amount_total" widget="monetary"/></strong>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </xpath>
+        </field>
+    </record>
+    </data>
+    </odoo>
