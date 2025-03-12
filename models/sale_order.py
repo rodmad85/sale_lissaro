@@ -19,6 +19,7 @@ class SaleLissaro(models.Model):
         store=True
     )
 
+
     @api.depends("order_line.product_id")
     def _compute_product_ids(self):
         for order in self:
