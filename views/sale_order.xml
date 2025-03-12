@@ -55,19 +55,15 @@
                             <div t-attf-class="oe_kanban_card oe_kanban_global_click">
                                 <div class="o_kanban_record_top mb16">
                                     <div class="o_kanban_record_headings mt4">
-                                        <strong class="o_kanban_record_title"><!--<t t-esc="record.name.value"/> --> <span><t t-esc="record.partner_id.value"/></span></strong>
+                                        <strong class="o_kanban_record_title"><!--<t t-esc="record.name.value"/> --> <span><t t-esc="record.partner_id.value"/></span> - <span><t t-esc="record.name.value"/></span></strong>
                                     </div>
 
                                 </div>
                                 <div>
 
 
-                                    <field name="order_line"  widget="many2many_tags" nolabel="1" mode="tree">
-                                      <tree>
-                                        <field name="name" readonly="1"/>
-                                        <field name="price_subtotal" readonly="1"/>
-                                      </tree>
-                                    </field>
+                                    <field name="order_line"  widget="many2many_tags"/>
+
                                   </div>
                                 <div class="o_kanban_record_bottom">
 
