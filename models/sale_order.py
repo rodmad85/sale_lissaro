@@ -25,6 +25,7 @@ class SaleLissaro(models.Model):
         for order in self:
             products = order.order_line.mapped("product_id")
             order.product_kanban = [(6, 0, products.ids)] if products else [(6, 0, [])]  # Evita valores None
+            
 class SaleOrderLissaro(models.Model):
     _inherit = "sale.order.line"
 
